@@ -287,7 +287,7 @@ var project_state_aliases = {
                 //resize();
 
                 var options = {
-                    item: '<li class="col-md-12"><div class="media">\
+                    item: '<li><div class="media">\
                               <div class="media-left media-middle">\
                                 <a href="#" class="link">\
                                   <img class="media-object img-responsive logo img-thumbnailXXX">\
@@ -298,12 +298,12 @@ var project_state_aliases = {
                                    <div class="row">\
                                     <p class="fullDescription" style="display:none;"></p>\
                                     <p class="description col-md-8"></p>\
-                                    <div class="col-md-4 details">\
+                                    <div class="col-md-8 details">\
                                         <p class="downloads" style="display:none;"></p>\
-                                        <div class="col-md-12">Monthly downloads: <span class="badge downloadsHuman">50K+</span></a></div>\
-                                        <div class="col-md-12">Latest release: <span class="badge version">1.4</span></a></div>\
-                                        <div class="col-md-12">Project status: <span class="badge project_state">Incubating</span></a></div>\
-                                        <div class="col-md-12"><a class="btn btn-sm btn-info downloadUrl" href="#">Getting Started</a></div>\
+                                        <div class="col-md-8">Monthly downloads: <span class="badge downloadsHuman">50K+</span></a></div>\
+                                        <div class="col-md-8">Latest release: <span class="badge version">1.4</span></a></div>\
+                                        <div class="col-md-8">Project status: <span class="badge project_state">Incubating</span></a></div>\
+                                        <div class="col-md-8"><a class="btn btn-sm btn-info downloadUrl" href="#">Getting Started</a></div>\
                                     </div>\
                                 </div>\
                               </div>\
