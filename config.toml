@@ -66,16 +66,21 @@ themesDir = "node_modules/"
     name = "Resources"
     url = "/resources/"
     weight = 4
+
+[[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 5
     
 [[menu.main]]
     name = "Blog"
     url = "https://Jakartablogs.ee"
-    weight = 5
+    weight = 6
     
 [[menu.main]]
     name = "Compatible Products"
     url = "/compatibility/"
-    weight = 6
+    weight = 7
 
 # Resource sub-menu
 
