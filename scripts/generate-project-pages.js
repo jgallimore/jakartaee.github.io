@@ -1,4 +1,3 @@
-var Mustache = require('mustache');
 const Octokit = require('@octokit/rest')
 var fs = require('fs');
 
@@ -27,36 +26,17 @@ async function getProjectData() {
         project.contributors = [];
 
         var values = await Promise.all([
-            octokit.repos.getContributorsStats({ owner: org, repo: repository.name }),
             octokit.repos.getReadme({ owner: org, repo: repository.name }).catch(p =>'No README'),
             octokit.licenses.getForRepo({ owner: org, repo: repository.name }).catch(p => 'No license')]);
        
-        var contributors = values[0].data;
-
         var readme = '';
         var readmeExtension = '';
-        if(values[1].data) {
-            readme = new Buffer(values[1].data.content, 'base64').toString('utf8');
-            var readmeName = values[1].data.name;
+        if(values[0].data) {
+            readme = new Buffer(values[0].data.content, 'base64').toString('utf8');
+            var readmeName = values[0].data.name;
             readmeExtension = readmeName.substr(readmeName.lastIndexOf(".") + 1 , readmeName.length);
         }
-        var license = values[2].data ? values[2].data.license.name : '';
-
-        if(contributors) {
-            if(Array.isArray(contributors)) {
-                contributors.forEach(contributor => {
-                    var contrib = {};
-                    contrib['login'] = contributor.login;
-                    contrib['avatar'] = contributor.avatar_url;
-                    project.contributors.push(contrib);
-                });
-            } else {
-                var contrib = {};
-                contrib['login'] = contributors.login;
-                contrib['avatar'] = contributors.avatar_url;
-                project.contributors.push(contrib);
-            }
-        }
+        var license = values[1].data ? values[1].data.license.name : '';
 
         project.name = repository.name;
         project.description = repository.description;
@@ -65,47 +45,13 @@ async function getProjectData() {
         project.license = license;
         projects.push(project);
     });
-    
+
     return projects;
 }
 
 const start = async () => {
-    var projectsDirectory = __dirname + '/../content/projects';
-    fs.mkdirSync(projectsDirectory, { recursive: true }, (err) => {
-        if (err) throw err;
-    });
-
     var projects = await getProjectData();
-    projects.forEach(project => {
-        fs.readFile( __dirname + '/../templates/project.mustache', function (err, data) {
-            if (err) {
-                throw err; 
-            }
-   
-            var rendered = Mustache.render(data.toString(), project);
-
-            var projectDirectory = projectsDirectory + '/' + project.name;
-            fs.mkdirSync(projectDirectory, { recursive: true }, (err) => {
-                if (err) throw err;
-            });
-            fs.writeFile( projectDirectory + '/index.' + project.textFormat, rendered, (err) => {
-                if (err) throw err;
-            });
-        });
-    });
-
-    // TODO: this should be handled in the theme
-    // fs.readFile( __dirname + '/../templates/projects.mustache', function (err, data) {
-    //     if (err) {
-    //         throw err; 
-    //     }
-
-    //     var rendered = Mustache.render(data.toString(), projects);
-
-    //     fs.writeFile( __dirname + '/../content/projects/index.md', rendered, (err) => {
-    //         if (err) throw err;
-    //     });
-    // });
+    console.log(projects);
 }
 
 start()
