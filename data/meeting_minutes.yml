@@ -1,6 +1,9 @@
 items:
    marketing_committee:
        -
+          url: marketing_committee/minutes-marketing-july-25-2019.pdf
+          title: July 25, 2019 (pdf)
+       -
           url: marketing_committee/minutes-marketing-july-11-2019.pdf
           title: July 11, 2019 (pdf)
        -
@@ -322,6 +325,18 @@ items:
           title: June 28, 2018 (pdf)
 
    steering_committee:
+       -
+          title: July 23, 2019 (pdf)
+          url: steering_committee/minutes-july-23-2019.pdf
+      
+       -
+          title: July 16, 2019 (pdf)
+          url: steering_committee/minutes-july-16-2019.pdf
+      
+       -
+          title: July 9, 2019 (pdf)
+          url: steering_committee/minutes-july-9-2019.pdf
+      
        -
           title: July 2, 2019 (pdf)
           url: steering_committee/minutes-july-2-2019.pdf
