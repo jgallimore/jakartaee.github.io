@@ -6,10 +6,28 @@
 </div>
 
 <style>
-  div.product-list img { max-height: 150px; }
+  ul.set-list { list-style-type: none; padding-inline-start: 0px; }
+  div.product-list { background-color: #f7f7f7; width: 100vw; position: relative; margin-left: -50vw; left: 50% }
+  div.product-list img { max-height: 150px;  }
   div.product-list .grid-center { display: flex; align-items: center;}
+  div.vendor-border { 
+    border-width: 2px; 
+    border-style:solid; 
+    border-color: #e2e2e2; 
+    margin-left: 15px; 
+    margin-right: 15px; 
+    margin-bottom: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: calc(25% - 30px);
+    background-color: #ffffff;
+  }
+  p.margin-bottom-30 {
+    margin-bottom: 30px;
+  }
+
 </style>
-<ul>
+<ul class="set-list">
 {{ range $.Site.Data.compatible_products.sets }}
   <li><a href="#{{ .title | urlize }}">{{ .title }}</a></li>
 {{ end }}
@@ -17,10 +35,11 @@
 {{ range $.Site.Data.compatible_products.sets }}
   {{ $title:=.title }}
   <div class="product-list">
-    <h2 class="text-center heading-line" id="{{ .title | urlize }}"><span style="background-color:#fff;">{{ .title }}</span></h2>
+    <div class="container">
+    <h2 class="text-center heading-line" id="{{ .title | urlize }}"><span style="background-color:#f7f7f7;">{{ .title }}</span></h2>
     <div class="row">
       {{ range sort .items "name" "asc"}}
-        <div class="col-xs-24 col-sm-12 col-lg-6 padding-bottom-20">
+        <div class="col-xs-24 col-sm-12 col-lg-6 vendor-border">
           <div class="match-height-item-by-row padding-20 flex-column">
             <div class="center-block padding-left-30 padding-right-30 padding-bottom-10 padding-top-10 grid-center" data-mh="{{ $title | urlize }}">
               {{ if .image }}
@@ -34,16 +53,19 @@
             </div>
             <div class="flex-grow text-center flex-column">
               <h3 class="margin-bottom-0">{{ .name }}</h3>
-              <p class="flex-grow">{{ .vendor }}</p>
+              <p class="flex-grow margin-bottom-30">{{ .vendor }}</p>
+              <p><strong>Versions:</strong></p>
+              <p>
               {{ range .versions }} 
-                <p><a href="{{ .compatibility }}">{{ .version }}</a></p>
+                <a href="{{ .compatibility }}">{{ .version }}</a> 
               {{ end }}           
-              <p><a href="{{ .download }}" class="btn btn-primary">{{ .download_text | default "Download" }}</a></p>
+              </p>
             </div>
           </div>
         </div>
       {{ end }}
       <div class="clearfix"/>
+    </div>
     </div>
   </div>
 {{ end }}
