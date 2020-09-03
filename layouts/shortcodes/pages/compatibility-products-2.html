@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-16">
+  The success of Jakarta EE technology relies on compatibility to ensure application portability, security, stability, and resiliency. Compatibility will allow more technology providers to leverage and strengthen the Jakarta EE brand in the enterprise Java community. If you are interested in featuring your product here, follow the steps on the <a href="get_listed">Get Listed</a> page.
+  </div>
+  <div class="col-md-8"><img class="compatible-logo img img-responsive" src="/images/jakarta/jakarta-ee-compatible-logo-color.svg" title="Jakarta EE logo"></div>
+</div>
+
+<style>
+  ul.set-list { list-style-type: none; padding-inline-start: 22px; }
+  div.product-list { background-color: #f7f7f7; }
+  div.product-list img { max-height: 150px;  }
+  div.product-list .grid-center { display: flex; align-items: center;}
+  div.vendor-border { 
+    border-width: 2px; 
+    border-style:solid; 
+    border-color: #e2e2e2; 
+    margin-left: 15px; 
+    margin-right: 15px; 
+    margin-bottom: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: calc(25% - 30px);
+    background-color: #ffffff;
+  }
+  p.margin-bottom-30 {
+    margin-bottom: 30px;
+  }
+
+</style>
+<ul class="set-list">
+{{ range $.Site.Data.compatible_products.sets }}
+  <li><a href="#{{ .title | urlize }}">{{ .title }}</a></li>
+{{ end }}
+</ul>
+{{ range $.Site.Data.compatible_products.sets }}
+  {{ $title:=.title }}
+  
+  <div style="margin-left: 20px; margin-right: 20px; background-color: #f7f7f7; padding: 20px;">
+    <h2 class="text-center heading-line" id="{{ .title | urlize }}"><span style="background-color:#f7f7f7;">{{ .title }}</span></h2>
+    <div class="row">
+      {{ range sort .items "name" "asc"}}
+        <div class="col-xs-24 col-sm-12 col-lg-6 vendor-border">
+          <div class="match-height-item-by-row padding-20 flex-column">
+            <div class="center-block padding-left-30 padding-right-30 padding-bottom-10 padding-top-10 grid-center" data-mh="{{ $title | urlize }}">
+              {{ if .image }}
+              <img class="img img-responsive" src="{{ .image }}" alt="{{ .vendor }}'s {{ .name }} logo">
+              {{ else }}
+	            <div class="icon-backdrop">
+	              <div class="ratio"></div>
+	              <div class="icon-container"><i class="fa fa-download"></i></div>
+	            </div>
+              {{ end }}
+            </div>
+            <div class="flex-grow text-center flex-column">
+              <h3 class="margin-bottom-0">{{ .name }}</h3>
+              <p class="flex-grow margin-bottom-30">{{ .vendor }}</p>
+              <p><strong>Versions:</strong></p>
+              <p>
+              {{ range .versions }} 
+                <a href="{{ .compatibility }}">{{ .version }}</a> 
+              {{ end }}           
+              </p>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+      <div class="clearfix"/>
+    </div>
+  </div>
+</div>
+{{ end }}
