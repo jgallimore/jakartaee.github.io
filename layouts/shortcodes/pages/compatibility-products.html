@@ -42,11 +42,11 @@
               {{ end }}
             </div>
             <div class="flex-grow text-center flex-column">
-              <h3 class="margin-bottom-0">{{ .name }}</h3>
-              <p class="flex-grow margin-bottom-30">{{ .vendor }}</p>
+              <p class="margin-bottom-0"><strong>{{ .name }}</strong></p>
+              <p class="flex-grow margin-bottom-10">{{ .vendor }}</p>
               <p>
               {{ range .versions }} 
-                <a href="{{ .compatibility }}">{{ .version }}</a> 
+                <a class="compatibility-link" href="{{ .compatibility }}">{{ .version }}</a> 
               {{ end }}           
               </p>
             </div>
