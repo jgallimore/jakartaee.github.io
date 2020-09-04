@@ -11,11 +11,18 @@
     margin-bottom: 30px;
   }
 </style>
-<ul>
-{{ range $.Site.Data.compatible_products.sets }}
-  <li><a href="#{{ .title | urlize }}">{{ .title }}</a></li>
-{{ end }}
-</ul>
+
+<div class="row">
+  <div class="col-md-16">
+    <ul>
+      {{ range $.Site.Data.compatible_products.sets }}
+        <li><a href="#{{ .title | urlize }}">{{ .title }}</a></li>
+      {{ end }}
+      </ul>
+  </div>
+  <div class="col-md-8" style="text-align: center;"><a class="btn btn-lg btn-secondary" href="https://github.com/eclipse-ee4j/jakartaee-platform/issues?q=is%3Aissue+is%3Aclosed+label%3Acertification">Compatibility Requests</a></div>
+</div>
+
 {{ range $.Site.Data.compatible_products.sets }}
   {{ $title:=.title }}
   <div class="product-list">
